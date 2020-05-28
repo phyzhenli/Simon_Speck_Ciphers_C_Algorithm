@@ -1,15 +1,18 @@
-
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
 #include<stdint.h>
 #include<time.h>
+#include<windows.h>
 #define plain_file_open_error -1
 #define cipher_file_open_error -2
 #define ok 1
+#define unsigned short short
 typedef char ElemType;
-#define rshift_three(x) (((x) >> 3) | (((x) & 0x7) << (13)))
-#define rshift_one(x)   (((x) >> 1) | (((x) & 0x1) << (15)))
+
+#define rshift_two(x)   (((x >> 2)&0x3fff) | (((x) & 0x3) << 14))
+#define rshift_three(x) (((x >> 3)&0x1fff) | (((x) & 0x7) << (13)))
+#define rshift_one(x)   (((x >> 1)&0x7fff) | (((x) & 0x1) << 15))
 #define lshift_one(x)   ((x<<1)|((x>>15)&0x0001))
 #define lshift_eight(x) ((x<<8)|((x>>8)&0x00ff))
 #define lshift_two(x)   ((x<<2)|((x>>14)&0x0003))
